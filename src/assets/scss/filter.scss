@@ -172,6 +172,7 @@
     border-radius: 14px;
     padding: 15px 30px;
     text-align-last: left;
+    text-align: start;
     color: $color-dark-50;
     font-size: 16px;
     list-style: none;
@@ -261,14 +262,14 @@
   }
 }
 
-details > summary {
-  list-style: none;
-}
+// details > summary {
+//   list-style: none;
+// }
 
-details > summary::-webkit-details-marker {
-  display: none;
-}
+// details > summary::-webkit-details-marker {
+//   display: none;
+// }
 
-::marker {
-  display: none;
-}
+// ::marker {
+//   display: none;
+// }
