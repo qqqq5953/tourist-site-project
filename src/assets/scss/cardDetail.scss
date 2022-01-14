@@ -2,13 +2,14 @@
   padding: 33px 101px;
 
   @include mobile {
-    padding: 15px 39px 11px;
+    padding: 15px 50px 11px;
   }
 
   h2 {
     font-weight: bold;
     font-size: 34px;
     color: $color-dark-50;
+    line-height: 1.2;
   }
   .badge {
     background: $color-primary;
@@ -17,6 +18,15 @@
     padding: 6px;
     color: #fff;
     display: inline-block;
+
+    @include pad {
+      margin: 25px 0;
+    }
+
+    @include mobile {
+      margin: 17px 0;
+      font-size: $font-size-xs;
+    }
   }
 }
 
@@ -208,7 +218,7 @@
   padding: 34px 101px;
 
   @include mobile {
-    padding: 12px 39px;
+    padding: 12px 50px;
     font-size: $font-size-sm;
   }
 

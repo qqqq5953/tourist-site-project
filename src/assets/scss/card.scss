@@ -17,7 +17,7 @@
 
   @include mobile {
     margin: 0 auto 34px;
-    width: 100%;
+    min-width: 100%;
   }
 
   &:hover .card_image > .card_description {
