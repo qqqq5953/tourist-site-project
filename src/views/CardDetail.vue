@@ -243,6 +243,7 @@ export default {
     copyToClipBoard() {
       const phoneNumber = document.getElementById('phoneNumber');
       phoneNumber.select();
+      phoneNumber.setSelectionRange(0, 99999);
 
       /* Copy the text inside the text field */
       navigator.clipboard
