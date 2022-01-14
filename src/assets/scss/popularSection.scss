@@ -20,7 +20,7 @@
   color: $color-primary;
   margin-bottom: 70px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
 
   @include mobile {
     font-size: $font-size-md;
@@ -28,9 +28,14 @@
     margin-bottom: 30px;
   }
 
+  // PopularSectionTest.vue 跟DefaultSectionTest.vue 有個別設定
   img {
     margin-left: 24px;
     object-fit: cover;
+
+    @include mobile {
+      margin-left: 12px;
+    }
   }
 }
 
@@ -38,15 +43,6 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  // outline: 1px solid red;
-
-  @include pad {
-    justify-content: center;
-    outline: 1px solid red;
-    // justify-content: space-between;
-
-    // flex-wrap: nowrap;
-  }
 }
 
 .card_section_morePlaceBtn {
