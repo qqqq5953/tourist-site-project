@@ -129,7 +129,7 @@
             <template #card_phone="{ item }">
               <div class="card_phone">
                 <h5>
-                  電話：<a href="tel:`${item.Phone}`">{{
+                  電話：<a href="tel:`+${item.Phone}`">{{
                     item.Phone || '無'
                   }}</a>
                   <i
