@@ -15,12 +15,28 @@ h1 {
   font-weight: bold;
   margin-bottom: 20px;
   margin-top: 50px;
+
+  @include pad {
+    font-size: 50px;
+  }
+
+  @include mobile {
+    font-size: $font-size-xxl;
+  }
 }
 
 p {
   font-size: $font-size-xxl;
   text-align: center;
   color: $color-primary;
+
+  @include pad {
+    font-size: $font-size-lg;
+  }
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
 
 .back-to-home {
@@ -28,6 +44,7 @@ p {
   margin-top: 50px;
 
   a {
+    @include btn-hover;
     display: inline-block;
     color: $color-primary;
     font-size: $font-size-xxl;
@@ -36,7 +53,14 @@ p {
     color: white;
     padding: 20px 40px;
 
-    @include btn-hover;
+    @include pad {
+      font-size: $font-size-lg;
+      margin-bottom: 50px;
+    }
+
+    @include mobile {
+      font-size: 16px;
+    }
   }
 }
 </style>
