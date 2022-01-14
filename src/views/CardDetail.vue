@@ -243,8 +243,12 @@ export default {
     copyToClipBoard() {
       const phoneNumber = document.getElementById('phoneNumber');
       phoneNumber.select();
-      document.execCommand('copy');
-      alert('已複製電話至剪貼簿');
+
+      /* Copy the text inside the text field */
+      navigator.clipboard
+        .writeText(phoneNumber.value)
+        .then(() => alert('已複製 ' + phoneNumber.value))
+        .catch(() => alert('fail'));
     },
     // 1.取得傳進來的景點所在城市
     getcityValue() {
