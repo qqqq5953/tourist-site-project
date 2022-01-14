@@ -3,20 +3,8 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
-    name: 'HomeTest',
-    component: () => import('../views/HomeTest.vue'),
-    children: [
-      // {
-      //   path: 'searchResult',
-      //   name: 'SearchResult',
-      //   component: () => import('../components/PopularSection.vue')
-      // }
-      // {
-      //   path: '/defaultResult',
-      //   name: 'DefaultResult',
-      //   component: () => import('../components/DefaultResult.vue')
-      // }
-    ]
+    name: 'Home',
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/searchResult',
@@ -45,11 +33,6 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: '404',
     component: () => import('../views/PageNotFound.vue')
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
   }
 ];
 

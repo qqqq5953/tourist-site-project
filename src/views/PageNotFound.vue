@@ -3,7 +3,7 @@
   <h1>404</h1>
   <p>Oops! Page not found!</p>
   <div class="back-to-home">
-    <router-link :to="{ name: 'HomeTest' }"> Back to home page </router-link>
+    <router-link :to="{ name: 'Home' }"> Back to home page </router-link>
   </div>
 </template>
 

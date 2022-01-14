@@ -40,7 +40,6 @@ export default {
         const placeResponse = await this.axios.get(this.placeUrl, this.config);
         this.moreResultData = placeResponse.data;
         this.isLoading = false;
-        console.log('placeData', this.moreResultData);
       } catch (error) {
         console.log(error);
       }
@@ -52,7 +51,6 @@ export default {
         const foodResponse = await this.axios.get(this.foodUrl, this.config);
         this.moreResultData = foodResponse.data;
         this.isLoading = false;
-        console.log('foodData', this.moreResultData);
       } catch (error) {
         console.log(error);
       }
@@ -64,7 +62,6 @@ export default {
         const eventResponse = await this.axios.get(this.eventUrl, this.config);
         this.moreResultData = eventResponse.data;
         this.isLoading = false;
-        console.log('eventData', this.moreResultData);
       } catch (error) {
         console.log(error);
       }
@@ -93,7 +90,6 @@ export default {
   created() {
     // 接收 PopularSection.vue 傳來資料（讀取localStorage）
     this.moreResultType = JSON.parse(localStorage.getItem('passToMoreResult'));
-    console.log('moreResult 接收', this.moreResultType);
 
     if (this.moreResultType === '熱門景點') {
       this.getPlaceData();

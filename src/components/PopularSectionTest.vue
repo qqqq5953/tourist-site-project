@@ -69,7 +69,6 @@ export default {
     moreResult() {
       // 傳送到 MoreResult.vue (用 localStorage)
       const moreResult = JSON.stringify(this.defaultType);
-      console.log('========moreResult 發射========', moreResult);
       localStorage.setItem('passToMoreResult', moreResult);
 
       // 換頁時回到頁面最上方
@@ -79,25 +78,13 @@ export default {
       this.totalPages = Math.ceil(data.length / this.cardPerPage);
     },
     setPageData(data) {
-      // console.log('執行 setPageData');
-      // console.log('resultPath', this.resultPath);
-
       const page = this.currentPage;
       const perPage = this.cardPerPage;
       const start = page * perPage - perPage;
       const end = page * perPage;
-
-      // console.log('currentPage', page);
-      // console.log('perPage', perPage);
-      // console.log('start', start);
-      // console.log('end', end);
-      // console.log('更新前 paginatedData - setPageData', this.paginatedData);
-      // console.log('setPageData 切割結果', data.slice(start, end));
-
       return data.slice(start, end);
     },
     onPageChange(page) {
-      console.log('pageChange', page);
       this.currentPage = page;
     }
   },
@@ -116,16 +103,10 @@ export default {
       // 當所在頁面變動時，重新賦值給 paginatedData
 
       if (!this.searchData) {
-        console.log('執行條件');
         this.paginatedData = this.setPageData(this.data);
-        // console.log('paginatedData - currentPage', this.paginatedData);
-
         return;
       }
-
-      console.log('執行正常');
       this.paginatedData = this.setPageData(this.searchData);
-      console.log('paginatedData - currentPage', this.paginatedData);
     }
   }
 };
@@ -133,67 +114,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/popularSection.scss';
-// .card_section {
-//   padding: 55px 7.09%;
-//   &:nth-of-type(2) {
-//     background-color: $color-secondary;
-//   }
-
-//   @include pad {
-//     padding: 55px 10%;
-//   }
-
-//   @include mobile {
-//     padding: 30px 50px;
-//   }
-// }
-
-// .card_section_title {
-//   font-weight: bold;
-//   font-size: $font-size-xxl;
-//   color: $color-primary;
-//   margin-bottom: 70px;
-
-//   @include mobile {
-//     font-size: $font-size-md;
-//     text-align: center;
-//     margin-bottom: 30px;
-//   }
-
-//   .fas {
-//     margin-left: 24px;
-//   }
-// }
-
-// .card_section_title_icon {
-//   margin-left: 23px;
-// }
-
-// .card_section_content {
-//   display: flex;
-//   justify-content: space-between;
-//   flex-wrap: wrap;
-// }
-
-// .card_section_morePlaceBtn {
-//   @include btn-reset;
-//   background-color: $color-white-50;
-//   color: $color-primary;
-//   font-size: $font-size-xl;
-//   font-weight: 700;
-//   border: 3px solid $color-primary;
-//   border-radius: 20px;
-//   width: 61%;
-//   display: block;
-//   margin: 0 auto;
-
-//   @include pad {
-//     border-radius: 10px;
-//   }
-
-//   @include mobile {
-//     font-size: $font-size-sm;
-//     width: 85%;
-//   }
-// }
 </style>

@@ -111,7 +111,6 @@
           <div class="map_wrap">
             <div v-if="noDataWarning" class="noDataWarning">查無資料</div>
             <div id="mapid" class="map_default"></div>
-            <!-- v-if="hasOfficialSiteBtn" -->
           </div>
           <a
             href="#"
@@ -144,7 +143,6 @@
             </template>
           </Card>
         </section>
-        <!--  -->
         <OfficialSite
           :item="officialSiteData"
           v-if="isTableShown"
@@ -259,16 +257,12 @@ export default {
         (item) => this.defaultCardItem.City === item.name
       );
       this.cityValue = cityValue[0].value;
-
-      console.log('cityValue', this.cityValue);
     },
     // 2-1.取得該城市之 餐廳資料
     async getFoodDataByCity() {
       try {
         const foodResponse = await this.axios.get(this.foodUrl, this.config);
         this.foodData = foodResponse.data;
-        // console.log('foodData', this.foodData);
-        console.log('foodData');
       } catch (error) {
         console.log(error);
       }
@@ -278,8 +272,6 @@ export default {
       try {
         const hotelResponse = await this.axios.get(this.hotelUrl, this.config);
         this.hotelData = hotelResponse.data;
-        // console.log('hotelData', this.hotelData);
-        console.log('hotelData');
       } catch (error) {
         console.log(error);
       }
@@ -289,21 +281,12 @@ export default {
       try {
         const eventResponse = await this.axios.get(this.eventUrl, this.config);
         this.eventData = eventResponse.data;
-        // console.log('eventData', this.eventData);
-        console.log('eventData');
       } catch (error) {
         console.log(error);
       }
     },
     // 3.取得 傳進來的景點 附近餐廳/住宿/活動資料
     getNearByPlace(rawData, e) {
-      console.log('===========================================');
-      console.log('rawData', rawData);
-      // console.log("前一個 cardItem", this.cardItem);
-      // console.log("nodeName",e.target.nodeName);
-      // if (e.target.nodeName !== "I") return;
-      // console.log("dataset",e.target.dataset);
-
       // 不顯示卡片& Table
       this.isCardShown = false;
       this.isTableShown = false;
@@ -312,12 +295,7 @@ export default {
       this.clearPreviousData();
       this.changeDefaultMarkerPopup(this.redIcon, 'custom-popup-red');
 
-      // 取得取得 餐廳/住宿/活動 資料(依行政區)
-      // const filteredDataByDistrict = this.getDataByDistrict(rawData);
-
-      // console.log("filteredDataByDistrict",filteredDataByDistrict);
       // 取得取得 餐廳/住宿/活動 資料(依距離)
-      // this.filteredDataByDistance = this.getDataByDistance(filteredDataByDistrict);
       this.filteredDataByDistance = this.getDataByDistance(rawData);
 
       // 渲染圖標及Popup
@@ -392,7 +370,6 @@ export default {
           data[Name] === this.defaultCardItem[this.Name] ||
           data.Position.GeoHash === this.defaultCardItem.Position.GeoHash
         ) {
-          console.log('check', data[Name] === this.defaultCardItem[this.Name]);
           return;
         }
 
@@ -403,7 +380,6 @@ export default {
         ) {
           // 將資料放入 officialSiteData
           this.officialSiteData.push(data);
-          console.log('officialSiteData', this.officialSiteData);
 
           // 畫面滾動至 hasOfficialSiteBtn
           this.$refs.map.scrollIntoView(false);
@@ -422,8 +398,6 @@ export default {
         );
       });
 
-      console.log('filteredDataByDistance', filteredDataByDistance);
-
       // 如果沒有匹配的資料，顯示"查無資料"
       if (!filteredDataByDistance.length) {
         this.noDataWarning = true;
@@ -441,8 +415,6 @@ export default {
       return filteredDataByDistance;
     },
     showCard(e) {
-      console.log('/////////////////showCard///////////////////');
-
       // 找到當前座標之地點資料
       const selectedPosition = [e.latlng.lat, e.latlng.lng];
       const selectedSpot = this.filteredDataByDistance.filter((data) => {
@@ -454,8 +426,6 @@ export default {
           JSON.stringify(selectedPosition) === JSON.stringify(dataPosition)
         );
       });
-
-      console.log('showCard, selectedSpot', selectedSpot);
 
       // 傳送資料至 card 元件
       this.cardItem = { ...selectedSpot[0] };
@@ -480,10 +450,6 @@ export default {
       // 防止點擊多次而造成圖標重疊
       if (this.defaultMarkerPopup.marker.getIcon() === this.greenIcon) return;
       this.changeDefaultMarkerPopup(this.greenIcon, 'custom-popup-green');
-
-      console.log('showCard, 現在的 cardItem[this.Name]', this.cardItem[Name]);
-      console.log('showCard, 現在的 cardItem', this.cardItem);
-      console.log('showCard, geoArr', this.geoArr);
     },
     renderMarkerAndPopup(filteredDataByDistance) {
       filteredDataByDistance.forEach((data) => {
@@ -506,7 +472,6 @@ export default {
           markerPopup.popup
         );
       });
-      console.log('geoArr', this.geoArr);
     },
     changeDefaultMarkerPopup(icon, customPopup) {
       // 移除 default marker 及 popup
@@ -526,10 +491,6 @@ export default {
       this.mymap.addLayer(this.defaultMarkerPopup.marker);
     },
     changeCurrentMarkerColor(name, selectedPosition, selectedSpot) {
-      console.log(
-        '///////////////// changeCurrentMarkerColor ///////////////////'
-      );
-
       const latitude = selectedPosition[0];
       const longitude = selectedPosition[1];
 
@@ -554,13 +515,6 @@ export default {
       this.removeLayer(selectedMarker);
       this.removeLayer(selectedPopup);
 
-      console.log('selectedSpot', selectedSpot);
-      console.log('selectedSpotName', Name);
-      console.log('selectedMarker', selectedMarker);
-      console.log('selectedPopup', selectedPopup);
-      console.log('selectedPopup._content', selectedPopup._content);
-      console.log('name', name);
-
       // 建立新圖標
       const newMarkerPopup = this.setMarkerPopup(
         latitude,
@@ -575,12 +529,7 @@ export default {
       this.savePositionData(name, newMarkerPopup.marker, newMarkerPopup.popup);
     },
     changePreviousMarkerColor() {
-      console.log(
-        '///////////////// changeCurrentMarkerColor ///////////////////'
-      );
-
       const geoArrLength = this.geoArr.length;
-      console.log('geoArrLength', geoArrLength);
 
       // 只有一筆資料(沒有前一筆)
       if (geoArrLength === 1) return;
@@ -603,10 +552,6 @@ export default {
         this.showCard,
         'custom-popup-blue'
       );
-
-      console.log('previousItem', previousItem[0]);
-      console.log('previousItemIndex', previousItemIndex);
-      console.log('previousItemName', previousItemName);
 
       // 將previous marker 從 geoArr 移除並將更新的 marker 資料插入 geoArr
       this.geoArr.splice(previousItemIndex, 1, {
@@ -650,7 +595,6 @@ export default {
       }
     },
     setMap(latitude, longitude) {
-      console.log('傳進來的', latitude, longitude);
       this.mymap = L.map('mapid', {
         zoomSnap: 0.5,
         zoom: 15,
@@ -666,7 +610,6 @@ export default {
             'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
           maxZoom: 25,
           id: 'mapbox/streets-v11',
-          // id: "mapbox/light-v10",
           tileSize: 512,
           zoomOffset: -1,
           errorTilrUrl:
@@ -687,22 +630,6 @@ export default {
       );
     },
     setMarkerPopup(latitude, longitude, pupUpContent, icon, card, customPopup) {
-      // const popup = L.popup()
-      //   .setLatLng([latitude, longitude])
-      //   .setContent(pupUpContent)
-      //   .openOn(this.mymap);
-
-      // const customOptions = {
-      //   autoClose: false,
-      //   closeButton: false,
-      //   className: customPopup
-      // };
-
-      // const marker = L.marker([latitude, longitude], { icon: icon })
-      //   .bindPopup(popup, customOptions)
-      //   .addTo(this.mymap)
-      //   .on('click', card);
-
       const marker = L.marker([latitude, longitude], { icon: icon })
         .addTo(this.mymap)
         .on('click', card);
@@ -731,15 +658,11 @@ export default {
     }
   },
   created() {
-    console.log('cardDetail created');
-
     // 接收 Card.vue 傳來資料（讀取localStorage）
     this.temp = localStorage.getItem('moreInfoBtnDnone');
     this.defaultCardItem = JSON.parse(
       localStorage.getItem('passToCardDetails')
     );
-
-    console.log('defaultCardItem', this.defaultCardItem);
 
     // 複製一份到 cardItem
     this.cardItem = this.defaultCardItem;
@@ -757,8 +680,6 @@ export default {
     this.greenIcon = this.createIcon(this.greenIconUrl);
   },
   mounted() {
-    console.log('cardDetail mounted');
-
     this.latitude = this.defaultCardItem.Position.PositionLat;
     this.longitude = this.defaultCardItem.Position.PositionLon;
     this.setMap(this.latitude, this.longitude);

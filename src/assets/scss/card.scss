@@ -7,14 +7,11 @@
   border-radius: 14px;
   background-color: #fff;
   width: #{'max(366px, 30%)'};
-  // width: 30%;
   display: flex;
   flex-direction: column;
   margin: 0 auto 70px;
 
   @include pad {
-    // margin-left: 0;
-    // margin-right: 0;
     width: #{'max(45%, 275px)'};
   }
 
@@ -187,9 +184,6 @@
 
     .card_openTime_details {
       line-height: 1.5;
-      // text-overflow: ellipsis;
-      // overflow: hidden;
-      // white-space: nowrap;
     }
   }
 

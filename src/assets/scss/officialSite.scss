@@ -45,7 +45,6 @@
     th:last-of-type {
       padding: 20px 13px;
       width: 20%;
-      // outline: 1px solid red;
 
       @include mobile {
         padding: 10px 0px;
@@ -58,10 +57,6 @@
     tr + tr {
       border-top: 1px solid #999;
     }
-
-    // tr:nth-of-type(2n) {
-    // background-color: rgba(184, 215, 223, 0.5);
-    // }
 
     tr:hover {
       background-color: rgba(47, 121, 140, 0.4);

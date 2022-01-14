@@ -77,8 +77,6 @@
         />
       </div>
     </div>
-
-    <!-- <div class="filterArea-wrap"></div> -->
   </div>
 </template>
 
@@ -152,22 +150,16 @@ export default {
         { name: '熱門美食', value: 'Restaurant' },
         { name: '近期活動', value: 'Activity' }
       ],
-      // popularType: ["熱門景點","熱門美食","近期活動"],
       selectedType: '' || { name: '熱門景點', value: 'ScenicSpot' },
       selectedCityValue: '',
       dropdownsOpen: [],
       regionArea: [],
       dropdownsNoText: [],
       dropdownsHasText: []
-      // handler: {
-      //   click: [this.closeMask, this.sendFilterData],
-      //   'keyup.enter': [this.closeMask, this.sendFilterData]
-      // }
     };
   },
   methods: {
     closeMask() {
-      console.log('關閉');
       // 到 HeaderSection.vue
       this.$emit('closeMask');
     },
@@ -194,8 +186,6 @@ export default {
       });
     },
     selectRegion(region, cityName, cityValue) {
-      // this.$refs.filterBtn.focus();
-
       this.selectedCityValue = cityValue;
       switch (region) {
         case '北部': {
@@ -227,12 +217,10 @@ export default {
       this.selectedCityValue = '';
       this.regionData.forEach((regionItem) => {
         regionItem.selectedCity = '選擇縣市';
-        console.log('reset 完成', regionItem.selectedCity);
       });
     },
 
     dropdownListToggle(event) {
-      console.log('------------------------------------------');
       // Only run if the dropdown is open
       if (!event.target.open) return;
 
@@ -280,7 +268,6 @@ export default {
 
           // 如點選尚未選擇的選項，則將所有已選內容的選單移除 selectedItem 標記，並改成"選擇縣市"
           withText.forEach((hasTextItem) => {
-            console.log('hasTextItem', hasTextItem);
             hasTextItem.removeAttribute('selectedItem');
             const dropdownsHasTextSummary =
               hasTextItem.querySelector('summary');
@@ -288,10 +275,6 @@ export default {
           });
         });
       });
-    },
-    // 可刪除
-    changeSearchSectionStatus() {
-      // this.emitter.emit('searchStatus', true);
     }
   }
 };
@@ -299,277 +282,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/filter.scss';
-// .mask {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100%;
-//   position: relative;
-//   padding: 20px 0;
-// }
-
-// .banner_filterArea {
-//   position: absolute;
-
-//   // margin: auto;
-//   // top: 418px;
-//   // left: 26.6%;
-//   // right: 14.9%;
-
-//   display: flex;
-//   flex-direction: column;
-//   background-color: #fff;
-//   border-radius: 20px;
-
-//   // // 三角形
-//   // &::before {
-//   // content: "";
-//   // position: absolute;
-//   // top: -22px;
-//   // right: 14%;
-//   // border-top: 50px solid #fff;
-//   // border-left: 50px solid transparent;
-//   // border-top-left-radius: 7px;
-//   // border-top-right-radius: 7px;
-//   // transform: rotate(-45deg);
-
-//   // @include pad {
-//   // display: none;
-//   // }
-//   // }
-
-//   @include mobile {
-//     border-radius: 10px 10px 0px 0px;
-//     width: 100%;
-//     position: absolute;
-//     top: 72px;
-//   }
-
-//   .typeArea {
-//     padding: 34px 62px 35px;
-//     border-bottom: 1px solid #dcdcdc;
-//     display: flex;
-//     justify-content: space-between;
-//     position: relative;
-
-//     @include pad {
-//       padding: 30px 50px;
-//     }
-
-//     @include mobile {
-//       border-bottom: none;
-//       padding: 20px 62px 0;
-//     }
-
-//     a {
-//       padding: 10px;
-//       position: absolute;
-//       right: 52px;
-
-//       @include mobile {
-//         top: 16px;
-//         padding: 5px;
-//         right: 20px;
-//       }
-
-//       .fa-times {
-//         color: #dcdcdc;
-
-//         @include mobile {
-//           font-size: $font-size-md;
-//         }
-//       }
-//     }
-//   }
-
-//   .regionArea {
-//     padding: 35px 62px 40px;
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: space-between;
-
-//     @include pad {
-//       padding: 30px 50px;
-//     }
-
-//     @include mobile {
-//       display: block;
-//       padding: 20px 62px;
-//     }
-
-//     .region:not(:nth-last-child(1)) {
-//       margin-bottom: 30px;
-
-//       @include mobile {
-//         margin-bottom: 20px;
-//       }
-//     }
-//   }
-
-//   .popularItem,
-//   .region {
-//     width: 44.9%;
-
-//     @include mobile {
-//       width: 100%;
-//     }
-
-//     h4 {
-//       text-align: left;
-//       margin-bottom: 25px;
-//       font-size: $font-size-xxl;
-//       font-weight: bold;
-//       line-height: 1.2;
-
-//       @include pad {
-//         font-size: $font-size-xl;
-//         margin-bottom: 16px;
-//       }
-
-//       @include mobile {
-//         font-size: $font-size-md;
-//         margin-bottom: 10px;
-//       }
-//     }
-//   }
-
-//   .dropdown {
-//     position: relative;
-//     cursor: pointer;
-//     line-height: 1.2;
-
-//     &::after {
-//       content: '';
-//       position: absolute;
-//       right: 20px;
-//       top: 0;
-//       bottom: 0;
-//       margin: auto;
-//       width: 10px;
-//       height: 10px;
-//       border-top: 1px solid #999;
-//       border-right: 1px solid #999;
-//       transform: rotate(135deg);
-//       transition: transform 0.3s;
-//     }
-
-//     &[open]::after {
-//       transform: rotate(-45deg);
-//     }
-
-//     &[open] > .dropdown_item_selected ~ * {
-//       animation: expand 0.3s ease-in-out;
-//     }
-
-//     @keyframes expand {
-//       0% {
-//         opacity: 0;
-//         transform: translateY(0px);
-//       }
-
-//       100% {
-//         opacity: 1;
-//         transform: translateY(0);
-//       }
-//     }
-//   }
-
-//   .dropdown_item_selected {
-//     position: relative;
-//     background: #ffffff;
-//     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
-//     border-radius: 14px;
-//     padding: 19px 28px;
-//     text-align-last: left;
-//     color: $color-dark-50;
-//     font-size: $font-size-md;
-
-//     @include pad {
-//       border-radius: 10px;
-//       padding: 15px 12px;
-//     }
-
-//     @include mobile {
-//       border-radius: 10px;
-//       font-size: $font-size-sm;
-//       padding: 15px 12px;
-//     }
-//   }
-
-//   .dropdown_list {
-//     position: absolute;
-//     z-index: 2;
-//     top: 65px;
-//     left: 0;
-//     right: 0;
-//     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
-//     border-radius: 14px;
-//     background-color: #fff;
-//     text-align: center;
-
-//     @include mobile {
-//       top: 55px;
-//       border-radius: 10px;
-//       font-size: $font-size-sm;
-//       box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
-//     }
-
-//     & > .dropdown_item:not(:last-child) {
-//       border-bottom: 1px solid #dcdcdc;
-//     }
-//   }
-
-//   .dropdown_item {
-//     padding: 19px 28px 19px 28px;
-
-//     @include mobile {
-//       padding: 15px 12px;
-//     }
-
-//     &:first-of-type:hover {
-//       background-color: $color-primary;
-//       color: #fff;
-//       border-radius: 14px 14px 0 0;
-//     }
-
-//     &:last-of-type:hover {
-//       background-color: $color-primary;
-//       color: #fff;
-//       border-radius: 0 0 14px 14px;
-//     }
-
-//     &:hover {
-//       background-color: $color-primary;
-//       color: #fff;
-//     }
-//   }
-
-//   .banner_filterForm_searchBtn {
-//     @include btn-reset;
-//     @include btn-pill;
-//     @include btn-hover;
-//     width: 25.9%;
-//     margin: 0px auto 30px;
-//     font-size: 22px;
-//     font-weight: 700;
-
-//     @include mobile {
-//       margin-bottom: 46px;
-//       font-size: $font-size-sm;
-//       width: 48%;
-//     }
-//   }
-// }
-
-// .loading_mask {
-//   overflow: hidden;
-// }
-
-// details > summary {
-//   list-style: none;
-// }
-
-// ::marker {
-//   display: none;
-// }
 </style>

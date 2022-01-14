@@ -26,7 +26,7 @@
         </router-link>
       </li>
 
-      <!--數字 :class="{ 'd-none': !searchStatus }"  MoreResult-->
+      <!--數字-->
       <li class="page-item page-item-number" v-for="page in pages" :key="page">
         <router-link
           :to="`${resultPath}`"
@@ -144,20 +144,10 @@ export default {
   },
   computed: {
     startPage() {
-      // console.log('this.currentPage', this.currentPage);
-      // console.log('this.maxViewPage', this.maxViewPage);
-
       if (this.currentPage === 1) return 1;
-
       if (this.currentPage === this.totalPages) {
-        // console.log(
-        //   '最後一頁的 startPage',
-        //   this.totalPages - this.maxViewPage + 1
-        // );
         return Math.max(this.totalPages - this.maxViewPage + 1, 1);
       }
-
-      console.log('startPage', this.currentPage - 1);
       return this.currentPage - 1;
     },
     endPage() {
@@ -173,9 +163,6 @@ export default {
       }
       return pageArr;
     }
-  },
-  created() {
-    console.log('pagination resultPath', this.resultPath);
   }
 };
 </script>
