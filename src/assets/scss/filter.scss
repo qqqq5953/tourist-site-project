@@ -167,18 +167,22 @@
 
   .dropdown_item_selected {
     position: relative;
-    background: #ffffff;
+    background-color: #ffffff;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
     border-radius: 14px;
     padding: 15px 30px;
     text-align-last: left;
     color: $color-dark-50;
     font-size: 16px;
+    list-style: none;
 
-    // &:focus {
-    //   background-color: $color-primary;
-    //   color: #fff;
-    // }
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::marker {
+      display: none;
+    }
 
     @include pad {
       border-radius: 10px;
@@ -259,6 +263,10 @@
 
 details > summary {
   list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
 }
 
 ::marker {
